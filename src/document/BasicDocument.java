@@ -135,9 +135,11 @@ public class BasicDocument extends Document
 		testCase(new BasicDocument("Sentences?!"), 3, 1, 1);
 		testCase(new BasicDocument("Lorem ipsum dolor sit amet, qui ex choro quodsi moderatius, nam dolores explicari forensibus ad."),
 		         32, 15, 1);
-//		BasicDocument bd = new BasicDocument("Hello World! How are you?");
-//		System.out.println(bd.getTokens("[A-z]+")); // (Regex to extract words)
-//		System.out.println(bd.getTokens("[^.!?]+")); // (Regex to extract sentences)
+		// My code
+		BasicDocument bd = new BasicDocument("Hello World! How are you?");
+		System.out.println(bd.getTokens("[A-z]+")); // (Regex to extract words)
+		System.out.println(bd.getTokens("[^.!?]+")); // (Regex to extract sentences)
+		System.out.println(bd.getFleschScore());
 	}
 	
 }
