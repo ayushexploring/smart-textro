@@ -91,21 +91,21 @@ public class BasicDocument extends Document
 		// out here at the top.
 
 		/* Our solution using regex's.  Uncoment here to run it*/
-		/*
+		
 		List<String> tokens = getTokens("[aeiouyAEIOUY]+");
 		List<String> loneEs = getTokens("[^aeiouyAEIOUY]+[eE]\\b");
 		List<String> singleEs = getTokens("\\b[^aeiouyAEIOUY]*[eE]\\b");			
 		return tokens.size() - (loneEs.size() - singleEs.size());
-		*/
+		
 				
 		/* Our solution that does NOT use regexs to find syllables */
-		List<String> tokens = getTokens("[a-zA-Z]+");
-		int totalSyllables = 0;
-		for (String word : tokens)
-		{
-			totalSyllables += countSyllables(word);
-		}
-		return totalSyllables;
+//		List<String> tokens = getTokens("[a-zA-Z]+");
+//		int totalSyllables = 0;
+//		for (String word : tokens)
+//		{
+//			totalSyllables += countSyllables(word);
+//		}
+//		return totalSyllables;
 	}
 	
 	
