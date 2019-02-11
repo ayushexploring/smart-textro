@@ -70,8 +70,8 @@ public class DocumentBenchmarking {
 			double bdDuration = (endTime - startTime)/1000000000.0;
 			startTime = System.nanoTime();
 			for(int i = 0; i < trials; i++) {
-				BasicDocument bd = new BasicDocument(str);
-				bd.getFleschScore();
+				EfficientDocument ef = new EfficientDocument(str);
+				ef.getFleschScore();
 			}
 			endTime = System.nanoTime();
 			double efDuration = (endTime - startTime)/1000000000.0;

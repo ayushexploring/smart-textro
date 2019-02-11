@@ -11,9 +11,9 @@ import java.util.List;
  */
 public class EfficientDocument extends Document {
 
-	private int numWords;  // The number of words in the document
-	private int numSentences;  // The number of sentences in the document
-	private int numSyllables;  // The number of syllables in the document
+	private int numWords = 0;  // The number of words in the document
+	private int numSentences = 0;  // The number of sentences in the document
+	private int numSyllables = 0;  // The number of syllables in the document
 	
 	public EfficientDocument(String text)
 	{
@@ -51,22 +51,18 @@ public class EfficientDocument extends Document {
 		// MAKE SURE YOU UNDERSTAND THIS LINE BEFORE YOU CODE THE REST
 		// OF THIS METHOD.
 		List<String> tokens = getTokens("[!?.]+|[a-zA-Z]+");
-		int wordsCount = 0, sentencesCount = 0, syllablesCount = 0;
 		for(String str : tokens) {
 			if(isWord(str)) {
-				wordsCount++;
-				syllablesCount += countSyllables(str);
+				numWords++;
+				numSyllables += countSyllables(str);
 			}
 			else {
-				sentencesCount++;
+				numSentences++;
 			}
 		}
 		if (!tokens.isEmpty() && isWord(tokens.get(tokens.size() - 1))) {
-			sentencesCount++;
+			numSentences++;
 		}
-		numWords = wordsCount;
-		numSentences = sentencesCount;
-		numSyllables = syllablesCount;
 		// TODO: Finish this method.  Remember the countSyllables method from 
 		// Document.  That will come in handy here.  isWord defined above will also help.
 	}
