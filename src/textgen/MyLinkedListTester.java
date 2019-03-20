@@ -150,10 +150,10 @@ public class MyLinkedListTester {
 	public void testSize()
 	{
 		// TODO: implement this test
-//		assertEquals("check size : ", 2, shortList.size());
-//		assertEquals("check size : ", 0, emptyList.size());
-//		assertEquals("check size : ", 10, longerList.size());
-//		assertEquals("check size : ", 3, list1.size());
+		assertEquals("check size : ", 2, shortList.size());
+		assertEquals("check size : ", 0, emptyList.size());
+		assertEquals("check size : ", 10, longerList.size());
+		assertEquals("check size : ", 3, list1.size());
 	}
 
 	

@@ -34,6 +34,7 @@ public class DictionaryBenchmarking {
 		String notInDictionary = "notaword";
 		
 		// TODO: Play around with the numbers above and graph the output to see trends in the data
+		System.out.println("numToCheck" + "\t" + "timeLL" + "\t\t" + "timeBST");
 		for (int numToCheck = start; numToCheck < numSteps*increment + start; 
 				numToCheck += increment)
 		{
@@ -58,7 +59,7 @@ public class DictionaryBenchmarking {
 			endTime = System.nanoTime();
 			long timeBST = (endTime - startTime);
 			
-			System.out.println(numToCheck + "\t" + timeLL + "\t" + timeBST);
+			System.out.println(numToCheck + "\t\t" + timeLL + "\t" + timeBST);
 			
 		}
 	

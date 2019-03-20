@@ -1,8 +1,10 @@
 package spelling;
 
 import java.util.List;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -40,7 +42,25 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	public boolean addWord(String word)
 	{
 	    //TODO: Implement this method.
-	    return false;
+		TrieNode node = root;
+		for (Character c : word.toLowerCase().toCharArray()) {
+			TrieNode child = node.getChild(c);
+
+			if (child != null) {
+				node = child;
+			} else {
+				node = node.insert(c);
+			}
+		}
+
+		if (node.endsWord()) {
+			return false;
+		}
+
+		node.setEndsWord(true);
+		++size;
+
+		return true;
 	}
 	
 	/** 
@@ -50,7 +70,7 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	public int size()
 	{
 	    //TODO: Implement this method
-	    return 0;
+	    return size;
 	}
 	
 	
@@ -60,7 +80,18 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	public boolean isWord(String s) 
 	{
 	    // TODO: Implement this method
-		return false;
+		TrieNode node = root;
+
+		for (Character c : s.toLowerCase().toCharArray()) {
+			TrieNode child = node.getChild(c);
+			if (child != null) {
+				node = child;
+			} else {
+				return false;
+			}
+		}
+
+		return node.endsWord();
 	}
 
 	/** 
@@ -101,7 +132,36 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
     	 //       Add all of its child nodes to the back of the queue
     	 // Return the list of completions
     	 
-         return null;
+    	 TrieNode node = root;
+
+ 		for (Character c : prefix.toLowerCase().toCharArray()) {
+ 			TrieNode child = node.getChild(c);
+ 			if (child != null) {
+ 				node = child;
+ 			} else {
+ 				return Collections.<String> emptyList();
+ 			}
+ 		}
+
+ 		List<String> completions = new LinkedList<>();
+ 		Queue<TrieNode> queue = new LinkedList<>();
+ 		queue.offer(node);
+
+ 		while (!queue.isEmpty() && numCompletions > 0) {
+ 			TrieNode t = queue.poll();
+
+ 			if (t.endsWord()) {
+ 				completions.add(t.getText());
+ 				--numCompletions;
+ 			}
+
+ 			for (Character c : t.getValidNextCharacters()) {
+ 				queue.offer(t.getChild(c));
+ 			}
+
+ 		}
+
+ 		return completions;
      }
 
  	// For debugging
